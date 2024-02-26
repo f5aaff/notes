@@ -3,7 +3,6 @@
 # <u>windows</u>
 ### <u>eject drive by terminal, by drive letter</u>
 - `(New-Object -comObject Shell.Application).Namespace(17).ParseName("*\<Drive Letter\>*:").InvokeVerb("Eject")`
-- `(New-Object -comObject Shell.Application).Namespace(17).ParseName("*\<Drive Letter\>*:").InvokeVerb("Eject")`
 
 ### <u>info and other commands</u>
 <u>get uuid of drive, given the drive letter</u>
@@ -22,7 +21,6 @@ this involves using the command to get the drive letter, as input to the above c
 
 <u>mount drive by uuid</u>
 - `mountvol <Drive Letter> : \\?\Volume{$driveGUID}`
-
 
 ### <u>zip and part</u>
 no default multi-part zip standard, 3rd party application required.
