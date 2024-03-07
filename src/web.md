@@ -9,6 +9,8 @@
 listens on port 80
 
 - the rest is copied and pasted from [here](https://ahmedmusaad.com/add-google-authentication-to-any-website-using-nginx-and-oauth-proxy/)
+- the rest as mentioned above, adds locations for the oauth, replacing the root address '/' and adding '/oauth2'.
+- *still haven't figured out how to stop direct connections to the nginx instance, as you can still just navigate straight to the address with 0 issues.*
 
 ### oauth2_proxy config
 - simple enough, upstreams is the ngrok url
