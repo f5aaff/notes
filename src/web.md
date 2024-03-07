@@ -15,15 +15,33 @@ listens on port 80
 - email_domains is set to * to allow all email_domains
 - client id and secret are taken from the google api dashboard
 - cookie secret is gen'd via the following command:<br>
-`dd if=/dev/urandom bs=32 count=1 2>/dev/null | base64 | tr -d -- '\n' | tr -- '+/' '-_' ; echo`
+```dd if=/dev/urandom bs=32 count=1 2>/dev/null | base64 | tr -d -- '\n' | tr -- '+/' '-_' ; echo```
 
 
 ## running the application
 ### nginx
 - nginx can be started manually as follows (assuming you are in the root of the oauth dir.):<br>
-`sudo nginx -c $(pwd)/nginx.conf`
+```sudo nginx -c $(pwd)/nginx.conf```
 
 ### oauth2_proxy
 - oauth2 proxy can be started as follows:<br>
-`sudo $(pwd)/oauth2_proxy/oauth2-proxy --cookie-secure=false --config $(pwd)/oauth2_proxy/oauth2-proxy.cfg `
+```sudo $(pwd)/oauth2_proxy/oauth2-proxy --cookie-secure=false --config $(pwd)/oauth2_proxy/oauth2-proxy.cfg```
+- ```--cookie-secure=false``` disables https, probably just for testing since certs are unnecessary for a tester
+- ```--config``` just passes the config file, most of the contents can be assigned in the command passed, so arguably unecessary<br> 
 
+```
+upstreams = ["http://localhost:80/"]
+
+email_domains=[ "*" ]
+
+client_id = "**************************************"
+
+client_secret = "**********************************"
+
+cookie_secret = "*********************************"`
+```
+
+- the above block is the config, fields as follows:
+	+ upstreams: this is the address nginx serves on
+	+ client id & client secret: taken from oauth provider
+	+ cookie secret: generated as specified above
